@@ -1,0 +1,279 @@
+<html>
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>The Bachelor Photo Album</title>
+<!-- #EndEditable -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Language" content="en-gb">
+
+<LINK REL=StyleSheet HREF='thesims.css' TYPE='text/css'>
+
+<style type="text/css">
+<!--
+BODY			{background-image: url(scrappatt.jpg);}
+
+#NavBar             {position:absolute}
+#NavBarNoHouse       {position:absolute}
+
+#NextNav        {position:absolute}
+#PrevNav        {position:absolute}
+#PageCounter       {position:absolute}
+#PhotoAlbumImage       {position:absolute}
+#PhotoAlbumText       {position:absolute}
+#EmptyPhotoAlbum       {position:absolute}
+
+.unnamed3 {  background-color: #EFEFE7}
+-->
+</style>
+<script language='Javascript'>
+<!--
+
+familyoff = new Image();
+familyoff.src = "family_a.jpg";
+familyon = new Image();
+familyon.src = "family_c.jpg";
+
+houseoff = new Image();
+houseoff.src = "house_a.jpg";
+houseon = new Image();
+houseon.src = "house_c.jpg";
+
+photooff = new Image();
+photooff.src = "photo_a.jpg";
+photoon = new Image();
+photoon.src = "photo_c.jpg";
+
+// preload rollover button images here
+// "on" = mouseover
+// "off" = not mouseover (default image)
+nexton = new Image();
+nexton.src = "scrapnav_next_b.jpg";
+nextoff = new Image();
+nextoff.src = "scrapnav_next_a.jpg";
+prevon = new Image();
+prevon.src = "scrapnav_prev_b.jpg";
+prevoff = new Image();
+prevoff.src = "scrapnav_prev_a.jpg";
+
+function mp_ImgRollOn(layerid, imgName)
+{
+        if (document.layers)
+        {
+                eval("window.document." + layerid + ".document.images['" + imgName + "'].src = " + imgName + "on.src;");
+        }
+        else if (document.all)
+        {
+	        //document[imgName].src = eval(imgName + "on.src");
+	        eval(layerid + ".all['" + imgName + "'].src = " + imgName + "on.src");
+        }
+
+}
+
+function mp_ImgRollOff(layerid, imgName)
+{
+        if (document.layers)
+        {
+                eval("window.document." + layerid + ".document.images['" + imgName + "'].src = " + imgName + "off.src;");
+        }
+        else if (document.all)
+        {
+		//document[imgName].src = eval(imgName + "off.src");
+	        eval(layerid + ".all['" + imgName + "'].src = " + imgName + "off.src");
+        }
+
+}
+
+function NextPage()
+{
+
+        var nextpage;
+
+        if (0 < 0)
+        {
+	        nextpage = 0 + 1;
+                eval ("window.location = 'scrapbook" + nextpage + ".html'");
+        }
+
+}
+
+function PrevPage()
+{
+
+	var prevpage;
+
+        if (0 > 1)
+        {
+	        prevpage = 0 - 1;
+                eval ("window.location = 'scrapbook" + prevpage + ".html'");
+        }
+
+}
+
+function mp_showLayer(layerid)
+{
+        if (document.layers)
+        {
+                eval("document." + layerid + ".visibility = 'show';");
+        }
+        else if (document.all)
+        {
+                eval(layerid + ".style.visibility = 'visible';");
+        }
+}
+
+function mp_hideLayer(layerid)
+{
+        if (document.layers)
+        {
+                eval("document." + layerid + ".visibility = 'hide';");
+        }
+        else if (document.all)
+        {
+                eval(layerid + ".style.visibility = 'hidden';");
+        }
+
+}
+
+function SetPage()
+{
+        CheckHouse();
+
+	if (0 > 0) {
+		mp_showLayer("PhotoAlbumImage");
+		//mp_showLayer("PhotoAlbumText");
+		mp_hideLayer("EmptyPhotoAlbum");
+	}
+	else
+	{
+		mp_hideLayer("PhotoAlbumImage");
+		//mp_hideLayer("PhotoAlbumText");
+		mp_showLayer("EmptyPhotoAlbum");
+	}
+}
+
+function CheckHouse()
+{
+        if (0)
+                mp_showLayer('NavBar');
+        else
+                mp_showLayer('NavBarNoHouse');
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body background="scrappatt.jpg" onload="SetPage()">
+
+<div id="NavBar" style="position:absolute; left:0px; top:0px; width:150px; height:600px; z-index:1; visibility:hidden" visibility="hide">
+<TABLE BORDER=0 WIDTH=150 CELLPADDING=0 CELLSPACING=0>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=110  WIDTH=150 BORDER=0 ALIGN=middle SRC=logo2.jpg></TD></TR>
+	<TR><TD><a href="familyhome.html"
+		onmouseover	= "mp_ImgRollOn('NavBar','family')"
+		onmouseout	= "mp_ImgRollOff('NavBar','family')">
+		<IMG SRC="family_a.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=85 BORDER=0 ALIGN=left NAME="family"></a><IMG SRC="vbar2.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=15 BORDER=0></TD></TR>
+	<TR><TD><a href="house.html"
+		onmouseover	= "mp_ImgRollOn('NavBar','house')"
+		onmouseout	= "mp_ImgRollOff('NavBar','house')">
+		<IMG SRC="house_a.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=85 BORDER=0 ALIGN=left NAME="house"></a><IMG SRC="vbar2.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=15 BORDER=0></TD></TR>
+	<TR><TD><IMG SRC="photo_c.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=85 BORDER=0 ALIGN=left NAME="photo"><IMG SRC="vbar2.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=15 BORDER=0></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=115  WIDTH=100 BORDER=0 ALIGN=left SRC=sbbottom2.jpg></TD></TR>
+</TABLE>
+</div>
+
+<div id="NavBarNoHouse" style="position:absolute; left:0px; top:0px; width:150px; height:600px; z-index:1; visibility:hidden" visibility="hide">
+<TABLE BORDER=0 WIDTH=150 CELLPADDING=0 CELLSPACING=0>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=110  WIDTH=150 BORDER=0 ALIGN=middle SRC=logo2.jpg></TD></TR>
+	<TR><TD><a href="familyhome.html"
+		onmouseover	= "mp_ImgRollOn('NavBarNoHouse','family')"
+		onmouseout	= "mp_ImgRollOff('NavBarNoHouse','family')">
+		<IMG SRC="family_a.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=85 BORDER=0 ALIGN=left NAME="family"></a><IMG SRC="vbar2.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=15 BORDER=0></TD></TR>
+	<TR><TD><IMG SRC="photo_c.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=85 BORDER=0 ALIGN=left NAME="photo"><IMG SRC="vbar2.jpg" VSPACE=0 HSPACE=0 HEIGHT=80 WIDTH=15 BORDER=0></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=bar2.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=115  WIDTH=100 BORDER=0 ALIGN=left SRC=sbbottom2.jpg></TD></TR>
+</TABLE>
+</div>
+
+
+<div id="TitleText" style="position:absolute; left:156px; top:40px; width:420px; height:20px;">
+<span class=BlueTitleText>Bachelor<br>Family Photo Album</span>
+</div>
+
+
+<div id='PhotoAlbumImage' style='position:absolute; left:110px; top:159px; width:610px; height:500px; z-index:29; visibility:hidden' visibility='hide'>
+	<TABLE align=center BORDER=0 CELLPADDING=0 CELLSPACING=0 BGCOLOR=#E7E7EF>
+		<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+		<TR><TD WIDTH=5></TD><TD><img src='FamilyGFX/No Image'></TD><TD WIDTH=5></TD></TR>
+		<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+		<TR HEIGHT=3px BGCOLOR=#B8A058><TD HEIGHT=3px BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD></TR>
+	</TABLE>
+	<br>
+	<br>
+		<div align=center>
+			<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 BGCOLOR=#E7E7EF>
+				<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+				<TR><TD WIDTH=5></TD><TD><span class=ScrapBookText></span></TD><TD WIDTH=5></TD></TR>
+				<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+				<TR HEIGHT=3px BGCOLOR=#B8A058><TD HEIGHT=3px BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD></TR>
+			</TABLE>
+		</div>
+</div>
+
+
+<div id=EmptyPhotoAlbum style='position:absolute; left:232px; top:245px; width:376px; height:31px; z-index:31; visibility:hidden' visibility='hide'>
+	<div align=center><class=ScrapBookText>
+	<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=0 BGCOLOR=#E7E7EF>
+		<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+		<TR><TD WIDTH=5></TD><TD><span class=ScrapBookText>Empty photo album.</span></TD><TD WIDTH=5></TD></TR>
+		<TR HEIGHT=5px><TD HEIGHT=5px></TD><TD></TD><TD></TD></TR>
+		<TR HEIGHT=3px BGCOLOR=#B8A058><TD HEIGHT=3px BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD><TD BGCOLOR=#B8A058></TD></TR>
+	</TABLE>
+</div></div>
+
+<div id="PageNav" style="position:absolute; left:530px; top:0px; width:167px; height:143px">
+<IMG VSPACE=0 HSPACE=0 HEIGHT=143 WIDTH=167 BORDER=0 SRC=scrapnav_icon.jpg>
+</div>
+
+<div id="NextNav" style="position:absolute; left:632px; top:20px; width:34px; height:32px">
+<a href="javascript:NextPage()"
+	onmouseover	= "mp_ImgRollOn('NextNav','next')"
+	onmouseout	= "mp_ImgRollOff('NextNav','next')">
+<img src="scrapnav_next_a.jpg" hspace="0" vspace="0" border="0" name="next"></a>
+</div>
+
+<div id="PrevNav" style="position:absolute; left:561px; top:40px; width:31px; height:31px">
+<a href="javascript:PrevPage()"
+	onmouseover	= "mp_ImgRollOn('PrevNav','prev')"
+	onmouseout	= "mp_ImgRollOff('PrevNav','prev')">
+<img src="scrapnav_prev_a.jpg" hspace="0" vspace="0" border="0" name="prev"></a>
+</div>
+
+<div id="PageCounter" style="position:absolute; left:576px; top:110px; width:100px; height:20px">
+<span class=BoldWhiteText>Page 0 of 0</span>
+</div>
+
+
+</body>
+</html>

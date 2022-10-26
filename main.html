@@ -1,0 +1,324 @@
+<html>
+<head>
+
+<title>
+Loading...
+</title>
+
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Language" content="en-gb">
+
+<LINK REL=StyleSheet HREF='thesims.css' TYPE='text/css'>
+
+<style>
+#NextNav        {position:absolute}
+#PrevNav        {position:absolute}
+#PageCounter       {position:absolute}
+
+</style>
+
+<script language='Javascript'>
+<!--
+
+var maxFam = 3;
+var currentFam = 1;
+var total = 1;
+
+// preload rollover button images here
+// "on" = mouseover
+// "off" = not mouseover (default image)
+nexton = new Image();
+nexton.src = "NeighborhoodGFX/addressback_next_b.jpg";
+nextoff = new Image();
+nextoff.src = "NeighborhoodGFX/addressback_next_a.jpg";
+prevon = new Image();
+prevon.src = "NeighborhoodGFX/addressback_prev_b.jpg";
+prevoff = new Image();
+prevoff.src = "NeighborhoodGFX/addressback_prev_a.jpg";
+
+function mp_ImgRollOn(layerid, imgName)
+{
+        if (document.layers)
+        {
+                eval("window.document." + layerid + ".document.images['" + imgName + "'].src = " + imgName + "on.src;");
+        }
+        else if (document.all)
+        {
+	        document[imgName].src = eval(imgName + "on.src");
+        }
+
+}
+
+function mp_ImgRollOff(layerid, imgName)
+{
+        if (document.layers)
+        {
+                eval("window.document." + layerid + ".document.images['" + imgName + "'].src = " + imgName + "off.src;");
+        }
+        else if (document.all)
+        {
+		document[imgName].src = eval(imgName + "off.src");
+        }
+
+}
+
+function ShowFamilyPage(pagedir, famid)
+{
+        if (pagedir != "#")
+        {
+                nextpage = pagedir + "/familyhome.html";
+
+                // this line changed with new pub tool
+		parent.nav.document.PubInfo.LotName.value = famid;
+		//parent.nav.document.PubInfo.LotName.value = pagedir;
+		parent.nav.showFamily();
+
+			if (document.layers)
+			{
+				window.location = escape(nextpage);
+			}
+			else if (document.all)
+			{
+				window.location = nextpage;
+			}
+        }
+}
+
+function ShowAll()
+{
+
+	// Yet ANOTHER hack fix for Netscape
+	if (document.layers)
+		maxFam = 6;
+
+	var a;
+        var out;
+
+        var top = 140;
+
+        //for (a=1; a <= 6; a++)
+        for (a=1; a <= maxFam; a++)
+        {
+                if (document.layers)
+	        {
+                        out = "<layer ID=Family" + a + " SRC='family" + a + ".html' left=170px top=" + top + "px width=450px height=70px></layer>";
+	        }
+	        else if (document.all)
+	        {
+                        out = "<IFRAME ID=Family" + a + " FRAMEBORDER=0 MARGINHEIGHT=0 MARGINWIDTH=0 SCROLLING=NO style='position:absolute;left:170;top:" + top + "; height:70;width:450' SRC='family" + a + ".html'></IFRAME>";
+	        }
+
+                if (a > 6)
+                {
+	                if (document.layers)
+		        {
+	                        out = "<layer ID=Family" + a + " SRC='blank.html' left=170px top=" + top + "px width=450px height=70px></layer>";
+		        }
+		        else if (document.all)
+		        {
+	                        out = "<IFRAME ID=Family" + a + " FRAMEBORDER=0 MARGINHEIGHT=0 MARGINWIDTH=0 SCROLLING=NO style='position:absolute;left:170;top:" + top + "; height:70;width:450' SRC='blank.html'></IFRAME>";
+		        }
+
+                }
+
+		document.write(out);
+                top = top + 72;
+        }
+
+	if (document.all)
+        {
+	        totalpages = 6 / maxFam;
+	        total = Math.round(totalpages);
+	        if (Math.max(total, totalpages) > total)
+	                total++;
+        }
+
+        //updateCounter();
+
+}
+
+function ShowPrev()
+{
+
+	temp = currentFam - maxFam;
+        if (temp > 0)
+        {
+                currentFam = currentFam - maxFam;
+
+	        for (a= 1; a <= maxFam; a++)
+	        {
+                        temp = currentFam + a - 1;
+	                if (temp > 6)
+	                {
+		                if (document.layers)
+			        {
+		                        eval("document.Family" + a + ".src = 'blank.html';");
+			        }
+			        else if (document.all)
+			        {
+		                        eval("Family" + a + ".location='blank.html';");
+			        }
+                        }
+                        else
+                        {
+		                if (document.layers)
+			        {
+		                        eval("document.Family" + a + ".src = 'family" + temp + ".html';");
+			        }
+			        else if (document.all)
+			        {
+		                        eval("Family" + a + ".location='family" + temp + ".html';");
+			        }
+                        }
+	        }
+
+	}
+
+        updateCounter();
+
+}
+
+function ShowNext()
+{
+
+	temp = currentFam + maxFam;
+        if (temp <= 6)
+        {
+                currentFam = currentFam + maxFam;
+
+	        for (a= 1; a <= maxFam; a++)
+	        {
+                        temp = currentFam + a - 1;
+	                if (temp > 6)
+	                {
+		                if (document.layers)
+			        {
+		                        eval("document.Family" + a + ".src = 'blank.html';");
+			        }
+			        else if (document.all)
+			        {
+		                        eval("Family" + a + ".location='blank.html';");
+			        }
+                        }
+                        else
+                        {
+		                if (document.layers)
+			        {
+		                        eval("document.Family" + a + ".src = 'family" + temp + ".html';");
+			        }
+			        else if (document.all)
+			        {
+		                        eval("Family" + a + ".location='family" + temp + ".html';");
+			        }
+                        }
+	        }
+
+	}
+
+	updateCounter();
+
+}
+
+function updateCounter()
+{
+
+
+
+//        if (document.layers)
+//        {
+//		eval("document.PageCounter.document.open();");
+//		eval("document.PageCounter.document.write('<span class=BoldWhiteText>Page " + current + " of " + total + "</span>');");
+//		eval("document.PageCounter.document.close();");
+//        }
+//        else if (document.all)
+	if (document.all)
+        {
+			if (parent.nav.document.PubInfo)
+				parent.nav.document.PubInfo.State.value = "Main";
+			else
+				parent.location = "neighborhood.html";
+	        current = currentFam + maxFam - 1;
+	        current = current / maxFam;
+                eval("PageCounter.innerHTML = '<span class=BoldWhiteText>Page ' + current + ' of ' + total + '</span>';");
+        }
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body background = "NeighborhoodGFX/yellowback.jpg" onload="updateCounter()">
+
+<div id="NavBar" style="position:absolute; left:0px; top:0px; width:150px; height:600px; z-index:1">
+<TABLE BORDER=0 WIDTH=150 CELLPADDING=0 CELLSPACING=0>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=110  WIDTH=150 BORDER=0 ALIGN=middle SRC=logo.jpg></TD></TR>
+	<TR><TD><IMG SRC="NeighborhoodGFX/family_b.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=100 BORDER=0 ALIGN=left NAME="family"></TD></TR>
+	<TR><TD><IMG SRC="NeighborhoodGFX/house_b.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=100 BORDER=0 ALIGN=left NAME="house"></TD></TR>
+	<TR><TD><IMG SRC="NeighborhoodGFX/photo_b.jpg" VSPACE=0 HSPACE=0 HEIGHT=80  WIDTH=100 BORDER=0 ALIGN=left NAME="photo"></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=20 WIDTH=100 BORDER=0 ALIGN=middle SRC=NeighborhoodGFX/bar.jpg></TD></TR>
+	<TR><TD><IMG VSPACE=0 HSPACE=0 HEIGHT=115  WIDTH=100 BORDER=0 ALIGN=left SRC=NeighborhoodGFX/sbbottom.jpg></TD></TR>
+</TABLE>
+</div>
+
+<div id="PageNav" style="position:absolute; left:530px; top:0px; width:167px; height:143px">
+<IMG VSPACE=0 HSPACE=0 HEIGHT=143 WIDTH=167 BORDER=0 SRC=NeighborhoodGFX/addressback.jpg>
+</div>
+
+<div id="NextNav" style="position:absolute; left:632px; top:20px; width:34px; height:32px">
+<a href="javascript:ShowNext()"
+	onmouseover	= "mp_ImgRollOn('NextNav','next')"
+	onmouseout	= "mp_ImgRollOff('NextNav','next')">
+<img src="NeighborhoodGFX/addressback_next_a.jpg" HEIGHT=32 WIDTH=34 hspace="0" vspace="0" border="0" name="next"></a>
+</div>
+
+<div id="PrevNav" style="position:absolute; left:561px; top:40px; width:31px; height:31px">
+<a href="javascript:ShowPrev()"
+	onmouseover	= "mp_ImgRollOn('PrevNav','prev')"
+	onmouseout	= "mp_ImgRollOff('PrevNav','prev')">
+<img src="NeighborhoodGFX/addressback_prev_a.jpg" HEIGHT=31 WIDTH=31 hspace="0" vspace="0" border="0" name="prev"></a>
+</div>
+
+<div id="PageCounter" style="position:absolute; left:576px; top:110px; width:100px; height:20px">
+<span class=BoldWhiteText>Page 1 of 1</span>
+</div>
+
+<div id="TitleText" style="position:absolute; left:168px; top:45px; width:300px; height:20px;">
+<span class=BlueTitleText>Address Book</span>
+</div>
+
+<div id="HeadingText" style="position:absolute; left:170px; top:113px; width:450px; height:20px;">
+
+<table width = 450 height=20 cellspacing=0 cellpadding=2>
+<tr>
+
+<td width=50% align=left>
+<span class=BlueHeadingText>Family Name</span>
+</td>
+
+<td width=20% align=left>
+<span class=BlueHeadingText>Address</span>
+</td>
+
+<td width=30% align=center>
+&nbsp
+</td>
+
+</tr></table>
+</div>
+
+<script>
+ShowAll();
+</script>
+
+</body>
+</html>
